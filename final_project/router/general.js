@@ -22,7 +22,9 @@ public_users.get('/isbn/:isbn', function (req, res) {
 
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
-
+  const authorName = req.params.author;
+  const filtered = Object.values(books).filter(b => b.author === authorName);
+  res.send(filtered)
 });
 
 // Get all books based on title
@@ -35,5 +37,5 @@ public_users.get('/review/:isbn', function (req, res) {
   return res.status(300).json({ message: "Yet to be implemented" });
 });
 
-console.log(books)
+console.log(books[2])
 module.exports.general = public_users;
