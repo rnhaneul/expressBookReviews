@@ -62,7 +62,17 @@ regd_users.post("/login", (req, res) => {
 
 // Add a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
-  // ????
+  const ISBN = req.params.isbn;
+  const review = req.query.review;
+  const username = req.session.username;
+
+  if (!books[ISBN]) {
+    return res.status(404).send("Book not found!");
+  }
+
+  books[ISBN].reviews[username] = review;
+
+  res.json(books[ISBN].reviews)
 });
 
 module.exports.authenticated = regd_users;
