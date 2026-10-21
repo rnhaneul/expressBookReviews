@@ -4,8 +4,7 @@ let books = require("./booksdb.js");
 const regd_users = express.Router();
 
 let users = [];
-console.log("Users array (start)");
-console.log(users)
+
 const isValid = (username) => {
   // Filter the users array for any user with the same username
   let userswithsamename = users.filter((user) => {
@@ -19,7 +18,7 @@ const isValid = (username) => {
   }
 }
 
-const authenticatedUser = (username, password) => {
+const authenticated = (username, password) => {
   // Filter the users array for any user with the same username and password
   let validusers = users.filter((user) => {
     return user.username === username && user.password === password;
@@ -44,7 +43,7 @@ regd_users.post("/login", (req, res) => {
   }
 
   // Authenticate user
-  if (authenticatedUser(username, password)) {
+  if (authenticated(username, password)) {
     // Generate JWT access token
     let accessToken = jwt.sign({
       data: password
@@ -63,8 +62,7 @@ regd_users.post("/login", (req, res) => {
 
 // Add a book review
 regd_users.put("/auth/review/:isbn", (req, res) => {
-  //Write your code here
-  return res.status(300).json({ message: "Yet to be implemented" });
+  // ????
 });
 
 module.exports.authenticated = regd_users;
