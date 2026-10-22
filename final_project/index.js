@@ -7,7 +7,7 @@ const genl_routes = require('./router/general.js').general;
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+
 app.use("/customer", session({ secret: "fingerprint_customer", resave: true, saveUninitialized: true }))
 
 app.use("/customer/auth/*", function auth(req, res, next) {
