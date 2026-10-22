@@ -33,14 +33,14 @@ public_users.get('/', function (req, res) {
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', function (req, res) {
   const ISBN = req.params.isbn;
-  res.send(books[ISBN])
+  res.send(JSON.stringify(books[ISBN], null, 1))
 });
 
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
   const authorName = req.params.author;
   const filtered = Object.values(books).filter(b => b.author === authorName);
-  res.send(filtered)
+  res.send(JSON.stringify(filtered, null, 1));
 });
 
 // Get all books based on title
@@ -54,7 +54,7 @@ public_users.get('/title/:title', function (req, res) {
 public_users.get('/review/:isbn', function (req, res) {
   const ISBN = req.params.isbn;
   const foundBook = books[ISBN];
-  res.send(`Reviews for the book: ${JSON.stringify(foundBook.title, null, 2)} - ${JSON.stringify(foundBook.reviews)}`)
+  res.send(JSON.stringify(foundBook.reviews, null, 2));
 });
 
 module.exports.general = public_users;

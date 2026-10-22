@@ -64,7 +64,7 @@ regd_users.post("/login", (req, res) => {
 regd_users.put("/auth/review/:isbn", (req, res) => {
   const ISBN = req.params.isbn;
   const review = req.query.review;
-  const username = req.session.username;
+  const username = req.session.authorization.username;
 
   if (!books[ISBN]) {
     return res.status(404).send("Book not found!");
