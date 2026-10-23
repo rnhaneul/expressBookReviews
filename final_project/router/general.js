@@ -62,8 +62,6 @@ public_users.get('/review/:isbn', function (req, res) {
 axios.defaults.baseURL = 'http://localhost:5000';
 
 async function getBookList() {
-  console.log("Calling...")
-
   try {
     const res = await axios.get("/");
     return res.data;
@@ -72,6 +70,16 @@ async function getBookList() {
   }
 }
 
-getBookList()
+async function getBookByISBN(isbn) {
+  try {
+    const res = await axios.get(`/isbn/${isbn}`);
+    return res.data;
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
+getBookByISBN(1);
+getBookList();
 
 module.exports.general = public_users;
