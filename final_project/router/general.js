@@ -79,6 +79,16 @@ async function getBookByISBN(isbn) {
   }
 }
 
+async function getBookByAuthor(author) {
+  try {
+    const res = await axios.get(`/author/${author}`);
+    return res.data;
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
+getBookByAuthor("Unknown")
 getBookByISBN(1);
 getBookList();
 
