@@ -88,8 +88,18 @@ async function getBookByAuthor(author) {
   }
 }
 
-getBookByAuthor("Unknown")
-getBookByISBN(1);
+async function getBookByTitle(title) {
+  try {
+    const res = await axios.get(`/title/${title}`);
+    return res.data;
+  } catch (err) {
+    console.log(err.message)
+  }
+}
+
 getBookList();
+getBookByISBN(1);
+getBookByAuthor("Unknown")
+getBookByTitle("The Divine Comedy")
 
 module.exports.general = public_users;
