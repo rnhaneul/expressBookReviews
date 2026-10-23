@@ -94,7 +94,7 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
   delete books[ISBN].reviews[username];
 
   return res.status(200).json({
-    message: "Review deleted",
+    message: "Review added/updated successfully.",
     reviews: books[ISBN].reviews
   });
 });

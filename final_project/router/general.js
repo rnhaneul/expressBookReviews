@@ -4,6 +4,7 @@ let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
+axios.defaults.baseURL = 'http://localhost:5000';
 
 public_users.post("/register", (req, res) => {
   const username = req.body.username;
@@ -59,7 +60,7 @@ public_users.get('/review/:isbn', function (req, res) {
   res.send(JSON.stringify(foundBook.reviews, null, 2));
 });
 
-axios.defaults.baseURL = 'http://localhost:5000';
+// AXIOS functions
 
 async function getBookList() {
   try {
@@ -96,10 +97,5 @@ async function getBookByTitle(title) {
     console.log(err.message)
   }
 }
-
-getBookList();
-getBookByISBN(1);
-getBookByAuthor("Unknown")
-getBookByTitle("The Divine Comedy")
 
 module.exports.general = public_users;
